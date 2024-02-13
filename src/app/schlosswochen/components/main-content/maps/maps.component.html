@@ -1,0 +1,22 @@
+<div *ngIf="apiLoaded | async">
+  <google-map
+    height="500px"
+    width="100%"
+    [zoom]="zoom"
+    [center]="center"
+    [options]="options"
+  >
+    <map-marker
+      *ngFor="let marker of markers"
+      [position]="marker.position"
+      [label]="marker.label"
+      [title]="marker.title"
+      [options]="marker.options"
+    >
+    </map-marker>
+  </google-map>
+  <div class="flex grow justify-center gap-3 pt-3">
+    <button mat-flat-button color="accent" (click)="zoomIn()">Zoom in</button>
+    <button mat-flat-button color="accent" (click)="zoomOut()">Zoom out</button>
+  </div>
+</div>

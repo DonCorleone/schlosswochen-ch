@@ -1,0 +1,25 @@
+<mat-tab-group *ngIf="impressions" mat-align-tabs="start">
+  <mat-tab
+    *ngFor="let impression of impressions"
+    [label]="impression.year.toString()"
+  >
+    <ng-template matTabContent>
+      <mat-chip-listbox *ngIf="impression.files" class="p-2">
+        <mat-chip *ngFor="let file of impression.files" class="bg-rouge-rubia">
+          <a [href]="'assets/files/' + file.name" target="_blank" class="flex items-center text-" >
+            <mat-icon class="mr-1">file_download</mat-icon>
+            {{ file.displayName }}
+          </a>
+        </mat-chip>
+      </mat-chip-listbox>
+      <app-weeks
+        [weeks]="impression.weeks"
+        [year]="impression.year"
+        [showSwiper]="true"
+        [hideToggle]="!impression.files" >
+      </app-weeks>
+    </ng-template
+  ></mat-tab>
+</mat-tab-group>
+
+

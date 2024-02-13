@@ -1,0 +1,52 @@
+<swiper-container
+  *ngIf="files$ | async as files"
+  appSwiper
+  #swiper
+  [config]="config"
+>
+  <swiper-slide *ngFor="let file of files">
+    <img
+      [ngSrc]="file.path"
+      [height]="height"
+      [width]="width"
+      [alt]="file.id"
+      loading="lazy"
+      class="swiper-lazy swiper-zoom-target"
+    />
+    <div class="swiper-lazy-preloader"></div>
+    <button
+      mat-mini-fab
+      color="primary"
+      class="absolute right-1 md:right-9 top-1 md:top-3 bg-rouge-rubia/75 text-vert-clair border border-vert-clair"
+      (click)="letsgo(file.path)"
+    >
+      <mat-icon>download</mat-icon>
+    </button>
+  </swiper-slide>
+
+  <div [ngClass]="autoplay ? '' : 'swiper-button-next'" class="text-vert-clair bg-rouge-rubia/75"></div>
+  <div [ngClass]="autoplay ? '' : 'swiper-button-prev'" class="text-vert-clair bg-rouge-rubia/75"></div>
+</swiper-container>
+
+
+<!--swiper *ngIf="files$ | async as files" [config]="config">
+  <div class="swiper-wrapper">
+    <ng-container *ngFor="let file of files">
+      <div class="swiper-slide">
+        <div class="swiper-zoom-container">
+          <img
+            [src]="file.path"
+            width="100%"
+            [alt]="file.id"
+            class="swiper-lazy swiper-zoom-target"
+          />
+
+        </div>
+
+      </div>
+    </ng-container>
+  </div>
+  <div class="swiper-pagination bg-rouge-rubia/75 md:pt-1"></div>
+  <div [ngClass]="autoplay ? '' : 'swiper-button-next'" class="text-vert-clair bg-rouge-rubia/75"></div>
+  <div [ngClass]="autoplay ? '' : 'swiper-button-prev'" class="text-vert-clair bg-rouge-rubia/75"></div>
+</swiper-->

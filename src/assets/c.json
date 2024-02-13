@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "sortorder": 100,
+        "active": true,
+        "title": "anmelden",
+        "text": "Für den Newsletter registrieren Sie sich bitte hier."
+    },
+    {
+        "id": 2,
+        "sortorder": 200,
+        "active": true,
+        "title": "schlosswochen",
+        "text": "In wundervoller, geschützter Umgebung tauchen die Kinder in eine magische Welt ein und werden zu Prinzessinnen, Rittern, Königinnen, Königen, Märchentieren und weiteren Gestalten.\n\nJedes Jahr gibt es eine neue spannende Fantasy-Geschichte, ein neues Schlosswochenlied, neue Abenteuer, Schlosstänze, ein Ritterturnier, Zeit um Rüstungen zu werken, Prinzessinnenkleider zu gestalten, spielen, tanzen und vieles mehr.\n\nDie Kinder werden am ersten Schlosstag in zwei Gruppen eingeteilt, dabei achten wir darauf, dass sie immer mit ihren Geschwistern und Freunden in der gleichen Gruppe sein können.\n\nDie Kinder werden von uns in ihrer Kreativität liebevoll unterstützt. Die Schlosswochen finden wie immer unter der Leitung von diplomierten Kindergarten-Pädagoginnen statt."
+    },
+    {
+        "id": 3,
+        "sortorder": 300,
+        "active": true,
+        "title": "alter",
+        "text": "Für Kinder ab 4½ bis 9 Jahren"
+    },
+    {
+        "id": 4,
+        "sortorder": 400,
+        "active": true,
+        "title": "zeit",
+        "text": "Täglich von 9.00 Uhr - 15.00 Uhr. (Inklusive Mittagessen)."
+    },
+    {
+        "id": 5,
+        "sortorder": 500,
+        "active": true,
+        "title": "kosten",
+        "text": "Fr. 270.- für eine Schlosswoche inkl. Werkmaterial & Mittagessen pro Kind Geschwisterrabatt Fr. 20.-"
+    },
+    {
+        "id": 6,
+        "sortorder": 600,
+        "active": true,
+        "title": "agb",
+        "text": "Die Allgemeinen Geschäftsbedingungen können hier heruntergeladen werden: [www.kinderkultur.ch](https://www.schlosswochen.ch/assets/pdf/agb_schlosswochen_20220411.pdf)"
+    },
+    {
+        "id": 7,
+        "sortorder": 700,
+        "active": true,
+        "title": "ort",
+        "text": "Kinderkultur Luzern  \nPavillon Tribschenhorn  \nRichard - Wagner - Weg 17  \n6005 Luzern \n\n#Anreise\n\n__Öffentlicher Verkehr:__ 12 Min. Bus Nr. 6/7/8 Haltestelle Wartegg - Dann Fussweg ca. 5 Min. Richtung See.\n\n__Individueller Verkehr:__ 6 Min. Parkplätze stehen beim Strandbad Tribschen zur Verfügung: Warteggstrasse, 6005 Luzern. \n\n_Wenn dort parkiert wird, führt ein direkter Weg durch das Schulhausgelände zum Pavillon Tribschenhorn. (Beim Pavillon Tribschenhorn darf nicht parkiert werden)._\n\n#Karte\nGoogle Maps [maps.google.com](https://www.google.ch/maps/place/Richard-Wagner-Weg+17,+6005+Luzern)"
+    },
+    {
+        "id": 8,
+        "sortorder": 800,
+        "active": true,
+        "title": "details",
+        "text": "Damit die Kinder einen optimalen Start in die Schlosswochen erleben, sind einige wichtige Details zu beachten.\n\n#Mitbringen\n- Finken\n- Znüni\n\n-__Bei schönem Wetter:__ \n- Sonnenhut\n- _Bitte reiben Sie Ihre Kinder zu Hause mit Sonnencreme ein_\n\n-__Bei schlechtem Wetter:__ \n- Gummistiefel\n- Regenschutz\n\n#Bitte beachten\n- Der Betrag von Fr. 270.- wird am ersten Tag bar bezahlt\n- Die Versicherung ist Sache der Erziehungsberechtigten\n- Die Erziehungsberechtigten müssen telefonisch erreichbar sein. (z.B. Handy Nr.)\n- Wenn Ihr Kind aus einem Grund nicht die ganze Woche anwesend sein kann, wird das Geld nicht zurückerstattet.\n- Bitte ziehen Sie Ihren Kindern Kleidung an, die beim Spielen und Gestalten schmutzig werden darf.\n- Am Freitag um 14.30 Uhr sind die Eltern zum Ritter- und Prinzessinnenausklang herzlich eingeladen.\n- Die Geschichte von Marianne Hofer mit den Bildern können Sie jeweils am Ende der Sommerferien auf der Website herunterladen.\n- Die Schlosswochen finden in Mundart statt"
+    },
+    {
+        "id": 9,
+        "sortorder": 900,
+        "active": true,
+        "title": "verpflegung",
+        "text": "Unsere Kindermenüs wurden von den Kindern getestet und für gut befunden. Sie werden vom 7Stern-Schlosskoch Röbi mit Liebe zubereitet.\n\nDas Schlossapéro: Gurken und Karottendip mit Schlosssauce wird jeden Tag serviert.\n\n#Montag\nBurg-Spaghetti mit Märchen-Tomatensauce und Käse\n\n#Dienstag\nSchloss-Butterreis mit süsser Gold-Currysauce und frischen Früchten\n\n#Mittwoch\nKönigs-Kartoffelstock mit BIO-Hackfleisch und Drachen-Tomatensauce\n\n#Donnerstag\nHof-Käsehörnchen mit Gold-Mais und Park-Apfelmus\n\n#Freitag\nBio-Bratwürste vom Schloss-Grill. Vor Ort zubereitet von Ritter Linus. Serviert mit Brot, Drachen-Ketchup und Schlosssauce.\n\n__Besonderes__\n\nDas Essen wird so gestaltet, dass jedes Kind selber entscheiden kann, ob es die Speisen mit oder ohne Sauce, mit oder ohne Käse etc. haben möchte.\n\nDas Fleisch kommt aus biologischer Tierhaltung.\n\n_Falls ein Kind etwas vom Kinderkultur-Speiseplan nicht essen darf, (z.b. bei Allergie) kann von den Eltern etwas mitgegeben werden. Bitte sprechen Sie das Spezialmenü mit dem Kinderkultur-Team ab._"
+    },
+    {
+        "id": 10,
+        "sortorder": 1000,
+        "active": true,
+        "title": "newsletter",
+        "text": "Möchten Sie per E-Mail informiert werden?\n[Registrieren Sie sich bitte hier.](https://mailchi.mp/21c107c0ed0a/schlosswochen)"
+    },
+    {
+        "id": 11,
+        "sortorder": 1100,
+        "active": true,
+        "title": "tagesplan",
+        "text": "Unten ist ein grober Plan der einzelnen Schlosswochentage aufgelistet. Die Kinder werden aber zusätzlich noch viel Spannendes erleben.\n\nDie einzelnen Tage werden teils in geleitete und teils in freie Spielsequenzen aufgeteilt. Die Kinder haben eine grosse Auswahl an Spielangeboten zur Verfügung. Viele Angebote der Schlosswochen sind für die Kinder freiwillig.\n\n#Montag\n__Teil 1 der Fantasy-Geschichte / Ritter und Prinzessinnenlied / Schlossregeln__\n\nEinführung der Spielangebote:\nRüstungen und Schlösser herstellen, Königs-Umhänge, Prinzessinnenkleider und Kronen werken\nSpiele im Raum: grosse Ritterburg, Schaukelpferd, zeichnen, Puppenhaus, Playmobil Schloss-Pferdehof, div. Spiele, Bauklötze, verkleiden, Schloss-Bilderbücher betrachten und vieles mehr. Diese Spielangebote stehen die ganze Woche zur Verfügung.\nNachmittag: Liedeinführung / Schlösser bemalen / Schlossfamilien / Fantasy-Geschichte\n\n#Dienstag\n__Teil 2 der Fantasy-Geschichte__\n\nFigur werken, diverse Spielangebote,\nNachmittag: Ritterregeln / Schlossfamilien stellen ihre Schlösser vor / tanzen / singen / Fantasy-Geschichte\n\n#Mittwoch\n__Teil 3 der Fantasy-Geschichte__\n\nKartonarmbrust herstellen\nNachmittag: Armbrustschiessen lernen / tanzen / Schmuck herstellen / tanzen / singen / Fantasy-Geschichte\n\n#Donnerstag\n__Teil 4 der Fantasy-Geschichte__\n\nRollenspiel, diverse Spielangebote,\nNachmittag: Grosses Ritterturnier / Fantasy-Geschichte\n\n#Freitag\n__Teil 5 und Abschluss der Phantasy-Geschichte__\n\nWerken und spielen, singen und tanzen. Rüstungen, Kleider und Kronen fertigstellen.\nNachmittag: Ritter- und Prinzessinnenfest. Abenteuer und königlicher Ausklang der Schlosswochen.\nDie Eltern sind herzlich eingeladen, um 14.30 Uhr beim Ritterschlag dabei zu sein."
+    },
+    {
+        "id": 12,
+        "sortorder": 1200,
+        "active": true,
+        "title": "covid19",
+        "text": "Der Bundesrat hat im Rahmen der Beschlüsse vom 27. Mai 2020 organisierte Lager und Freizeitaktivitäten unter Einhaltung der Schutzkonzepte erlaubt.\nWir freuen uns sehr, dass die Schlosswochen aus den folgenden Gründen stattfinden können. Alle unsere Schutzmassnamen stützen sich auf die Vorschriften des Bundesrates und können unter folgendem Link eingesehen werden:\n[kinderkultur.ch/Covid-19-Schutzkonzept](https://www.schlosswochen.ch/assets/pdf/Covid-19-Schutzkonzept.pdf)"
+    }
+]

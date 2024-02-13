@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+markdown > p {
+  display: flex;
+  flex-direction: column;
+}
+
+markdown > p > img {
+  width: 50vw;
+  align-self: center;
+}
+
+@media (max-width: 767px) {
+  markdown > p > img {
+    width: 100%;
+  }
+}
+.mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mat-tab-body-content {
+  overflow: unset !important;
+}
+
+mat-ink-bar {
+  background-color: #943a4d !important;
+  height: 4px !important;
+}
+.swiper-pagination-bullet{
+  background-color: #abc17a;
+}
+@media (min-width: 768px) {
+  .swiper-pagination-bullet{
+    width: 15px;
+    height: 15px;
+  }
+}

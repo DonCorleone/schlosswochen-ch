@@ -1,0 +1,167 @@
+## Anmelden
+
+Für den Newsletter registrieren Sie sich bitte hier.
+
+## Schlosswochen
+
+In wundervoller, geschützter Umgebung tauchen die Kinder in eine magische Welt ein und werden zu Prinzessinnen, Rittern, Königinnen, Königen, Märchentieren und weiteren Gestalten.
+
+Jedes Jahr gibt es eine neue spannende Fantasy-Geschichte, ein neues Schlosswochenlied, neue Abenteuer, Schlosstänze, ein Ritterturnier, Zeit um Rüstungen zu werken, Prinzessinnenkleider zu gestalten, spielen, tanzen und vieles mehr.
+
+Die Kinder werden am ersten Schlosstag in zwei Gruppen eingeteilt, dabei achten wir darauf, dass sie immer mit ihren Geschwistern und Freunden in der gleichen Gruppe sein können.
+
+Die Kinder werden von uns in ihrer Kreativität liebevoll unterstützt. Die Schlosswochen finden wie immer unter der Leitung von diplomierten Kindergarten-Pädagoginnen statt.
+
+## Alter
+
+Für Kinder ab 4½ bis 9 Jahren
+
+## Zeit
+
+Täglich von 9.00 Uhr - 15.00 Uhr. (Inklusive Mittagessen).
+
+## Kosten
+
+Fr. 270.- für eine Schlosswoche inkl. Werkmaterial & Mittagessen pro Kind Geschwisterrabatt Fr. 20.-
+
+## AGB
+
+Die Allgemeinen Geschäftsbedingungen können hier heruntergeladen werden: [www.kinderkultur.ch](/assets/pdf/agb_schlosswochen.pdf)
+
+## Ort
+
+Kinderkultur Luzern  
+Pavillon Tribschenhorn  
+Richard - Wagner - Weg 17  
+6005 Luzern
+
+### Anreise
+
+**Öffentlicher Verkehr:** 12 Min. Bus Nr. 6/7/8 Haltestelle Wartegg - Dann Fussweg ca. 5 Min. Richtung See.
+
+**Individueller Verkehr:** 6 Min. Parkplätze stehen beim Strandbad Tribschen zur Verfügung: Warteggstrasse, 6005 Luzern.
+
+_Wenn dort parkiert wird, führt ein direkter Weg durch das Schulhausgelände zum Pavillon Tribschenhorn. (Beim Pavillon Tribschenhorn darf nicht parkiert werden)._
+
+### Karte
+
+Google Maps [maps.google.com](https://www.google.ch/maps/place/Richard-Wagner-Weg+17,+6005+Luzern)
+
+## Details
+
+Damit die Kinder einen optimalen Start in die Schlosswochen erleben, sind einige wichtige Details zu beachten.
+
+### Mitbringen
+
+- Finken
+- Znüni
+
+-**Bei schönem Wetter:**
+
+- Sonnenhut
+- _Bitte reiben Sie Ihre Kinder zu Hause mit Sonnencreme ein_
+
+-**Bei schlechtem Wetter:**
+
+- Gummistiefel
+- Regenschutz
+
+### Bitte beachten
+
+- Der Betrag von Fr. 270.- wird am ersten Tag bar bezahlt
+- Die Versicherung ist Sache der Erziehungsberechtigten
+- Die Erziehungsberechtigten müssen telefonisch erreichbar sein. (z.B. Handy Nr.)
+- Wenn Ihr Kind aus einem Grund nicht die ganze Woche anwesend sein kann, wird das Geld nicht zurückerstattet.
+- Bitte ziehen Sie Ihren Kindern Kleidung an, die beim Spielen und Gestalten schmutzig werden darf.
+- Am Freitag um 14.30 Uhr sind die Eltern zum Ritter- und Prinzessinnenausklang herzlich eingeladen.
+- Die Geschichte von Marianne Hofer mit den Bildern können Sie jeweils am Ende der Sommerferien auf der Website herunterladen.
+- Die Schlosswochen finden in Mundart statt"
+
+## Verpflegung
+
+Unsere Kindermenüs wurden von den Kindern getestet und für gut befunden. Sie werden vom 7Stern-Schlosskoch Röbi mit Liebe zubereitet.
+
+Das Schlossapéro: Gurken und Karottendip mit Schlosssauce wird jeden Tag serviert.
+
+### Montag
+
+Burg-Spaghetti mit Märchen-Tomatensauce und Käse
+
+### Dienstag
+
+Schloss-Butterreis mit süsser Gold-Currysauce und frischen Früchten
+
+### Mittwoch
+
+Königs-Kartoffelstock mit BIO-Hackfleisch und Drachen-Tomatensauce
+
+### Donnerstag
+
+Hof-Käsehörnchen mit Gold-Mais und Park-Apfelmus
+
+### Freitag
+
+Bio-Bratwürste vom Schloss-Grill. Vor Ort zubereitet von Ritter Linus. Serviert mit Brot, Drachen-Ketchup und Schlosssauce.
+
+**Besonderes**
+
+Das Essen wird so gestaltet, dass jedes Kind selber entscheiden kann, ob es die Speisen mit oder ohne Sauce, mit oder ohne Käse etc. haben möchte.
+
+Das Fleisch kommt aus biologischer Tierhaltung.
+
+_Falls ein Kind etwas vom Kinderkultur-Speiseplan nicht essen darf, (z.b. bei Allergie) kann von den Eltern etwas mitgegeben werden. Bitte sprechen Sie das Spezialmenü mit dem Kinderkultur-Team ab._
+
+## Newsletter
+
+Möchten Sie per E-Mail informiert werden?
+[Registrieren Sie sich bitte hier.](https://mailchi.mp/21c107c0ed0a/schlosswochen)
+
+## Tagesplan
+
+Unten ist ein grober Plan der einzelnen Schlosswochentage aufgelistet. Die Kinder werden aber zusätzlich noch viel Spannendes erleben.
+
+Die einzelnen Tage werden teils in geleitete und teils in freie Spielsequenzen aufgeteilt. Die Kinder haben eine grosse Auswahl an Spielangeboten zur Verfügung. Viele Angebote der Schlosswochen sind für die Kinder freiwillig.
+
+### Montag
+
+**Teil 1 der Fantasy-Geschichte / Ritter und Prinzessinnenlied / Schlossregeln**
+
+Einführung der Spielangebote:
+Rüstungen und Schlösser herstellen, Königs-Umhänge, Prinzessinnenkleider und Kronen werken
+Spiele im Raum: grosse Ritterburg, Schaukelpferd, zeichnen, Puppenhaus, Playmobil Schloss-Pferdehof, div. Spiele, Bauklötze, verkleiden, Schloss-Bilderbücher betrachten und vieles mehr. Diese Spielangebote stehen die ganze Woche zur Verfügung.
+Nachmittag: Liedeinführung / Schlösser bemalen / Schlossfamilien / Fantasy-Geschichte
+
+### Dienstag
+
+**Teil 2 der Fantasy-Geschichte**
+
+Figur werken, diverse Spielangebote,
+Nachmittag: Ritterregeln / Schlossfamilien stellen ihre Schlösser vor / tanzen / singen / Fantasy-Geschichte
+
+### Mittwoch
+
+**Teil 3 der Fantasy-Geschichte**
+
+Kartonarmbrust herstellen
+Nachmittag: Armbrustschiessen lernen / tanzen / Schmuck herstellen / tanzen / singen / Fantasy-Geschichte
+
+### Donnerstag
+
+**Teil 4 der Fantasy-Geschichte**
+
+Rollenspiel, diverse Spielangebote,
+Nachmittag: Grosses Ritterturnier / Fantasy-Geschichte
+
+### Freitag
+
+**Teil 5 und Abschluss der Phantasy-Geschichte**
+
+Werken und spielen, singen und tanzen. Rüstungen, Kleider und Kronen fertigstellen.
+Nachmittag: Ritter- und Prinzessinnenfest. Abenteuer und königlicher Ausklang der Schlosswochen.
+Die Eltern sind herzlich eingeladen, um 14.30 Uhr beim Ritterschlag dabei zu sein.
+
+## Covid 19
+
+Der Bundesrat hat im Rahmen der Beschlüsse vom 27. Mai 2020 organisierte Lager und Freizeitaktivitäten unter Einhaltung der Schutzkonzepte erlaubt.
+Wir freuen uns sehr, dass die Schlosswochen aus den folgenden Gründen stattfinden können. Alle unsere Schutzmassnamen stützen sich auf die Vorschriften des Bundesrates und können unter folgendem Link eingesehen werden:
+[kinderkultur.ch/Covid-19-Schutzkonzept](https://www.schlosswochen.ch/assets/pdf/Covid-19-Schutzkonzept.pdf)

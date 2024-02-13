@@ -1,0 +1,23 @@
+<div class="mat-typography">
+  <mat-card class="bg-vert-clair">
+    <mat-card-header>
+      <mat-card-title>
+        <h1 class="text-terre-ombre-brule">Schlosswochen - Das Ferienangebot für Kinder in Luzern</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="year$ | async as year"
+      class="bg-vert-59 text-terre-ombre-brule p-4"
+    >
+      <h2 class="text-white">Daten {{ year$ | async }}</h2>
+      <app-weeks *ngIf="weeks$ | async as weeks"
+        [weeks]="weeks"
+        [year]="year"
+        [showSwiper]="false"
+        [hideToggle]="true" >
+      </app-weeks>
+    </mat-card-content>
+
+  </mat-card>
+</div>
+
+<!--app-swiper [year]="0" [week]="0" [autoplay]="{ delay: 2000 }"></app-swiper-->

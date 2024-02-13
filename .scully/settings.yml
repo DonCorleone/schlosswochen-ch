@@ -1,0 +1,11 @@
+identifier: la6a25j86ek1z95d
+appPort: 1864
+staticPort: 1668
+reloadPort: 2667
+hostName: localhost
+projectName: schlosswochen-ch
+homeFolder: /Users/administrator/Documents/scm/schlosswochen/schlosswochen-ch
+distFolder: dist/schlosswochen-ch
+outDir: /Users/administrator/Documents/scm/schlosswochen/schlosswochen-ch/dist/static
+handle404: ''
+allowErrorCollect: true

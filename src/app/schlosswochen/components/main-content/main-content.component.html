@@ -1,0 +1,26 @@
+<div *ngIf="!content">
+  <mat-spinner></mat-spinner>
+</div>
+<div
+  *ngIf="content && content.cards; else elseBlock"
+  class="grid justify-content-stretch grid-cols-1"
+  [ngClass]="{
+    'md:grid-cols-2 gap-3': content.cards.length > 1,
+    'lg:grid-cols-3 gap-4': content.cards.length > 2
+  }"
+>
+  <app-card *ngFor="let card of content.cards" [card]="card"></app-card>
+</div>
+<ng-template #elseBlock>
+  <mat-accordion class="block md:hidden pb-3">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        Menu
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        <app-index></app-index>
+      </ng-template>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <app-welcome></app-welcome>
+</ng-template>

@@ -1,0 +1,23 @@
+{
+    "_id": {
+      "$oid": "629a212b215ee1a4bfe405e7"
+    },
+    "active": true,
+    "id": 0,
+    "sortorder": 50,
+    "title": "team",
+    "cards": [
+        {
+            "name": "Natalie Wieland-Hofer",
+            "markdown": "team-natalie"
+        },
+        {
+            "name": "Marianne Hofer",
+            "markdown": "team-marianne"
+        },
+        {
+            "name": "Weitere",
+            "markdown": "team-weitere"
+        }
+    ]
+  }

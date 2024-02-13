@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Schlosswochen</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="msapplication-navbutton-color" content="#943a4d">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#943a4d">
+    <meta name="theme-color" content="#943a4d" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- A little help for the Netlify bots if you're not using a SSG -->
+    <form name="subscribe" netlify netlify-honeypot="bot-field" hidden 
+    action="/schlosswochen/success">
+      <input type="text" name="first_name" />
+      <input type="text" name="last_name" />
+      <input type="email" name="email" />
+    </form>
+    <app-root></app-root>
+  </body>
+</html>
