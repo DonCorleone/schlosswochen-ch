@@ -1,7 +1,8 @@
 <mat-accordion multi>
-  <mat-expansion-panel *ngFor="let week of weeks" [hideToggle]="hideToggle" class="mb-4" >
+  <mat-expansion-panel *ngFor="let week of weeks; trackBy: weekNumber" [hideToggle]="hideToggle" class="mb-4" >
     <mat-expansion-panel-header>
-      <span class="text-vert-clair">Woche {{week?.number}} :</span><span class="pl-3">{{ week.dateStart | date: 'dd.MMMM'}} - {{ week.dateEnd | date: 'dd.MMMM'}}</span>
+      <span class="text-vert-clair">Woche {{week?.number}} :</span><span class="pl-3">
+      {{ week.dateStart | date: 'dd.MMMM' : '' : 'de-CH'}} - {{ week.dateEnd | date: 'dd.MMMM' : '' : 'de-CH'}}</span>
       <!--app-readonly-datepicker [week]="week" class="pt-6 -ml-2" ></app-readonly-datepicker-->
     </mat-expansion-panel-header>
     <ng-template *ngIf="showSwiper" matExpansionPanelContent>

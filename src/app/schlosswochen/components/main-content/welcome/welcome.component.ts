@@ -17,7 +17,7 @@ export class WelcomeComponent implements OnInit, OnDestroy {
     private breakpointObserver: BreakpointObserver
   ) {}
   private _ngDestroy$ = new Subject<void>();
-  weeks$: Observable<Week[]> = EMPTY;
+  weeks: Week[] = [];
   year$: Observable<number | undefined> = EMPTY;
 
   ngOnInit(): void {
@@ -29,17 +29,26 @@ export class WelcomeComponent implements OnInit, OnDestroy {
         (y) => y.title == 'impressionen'
       )?.cards;
       if (cardsDef) {
-        const currentImpression = cardsDef[0].impressions?.sort((a, b) => {
+        const currentImpressions = cardsDef[0].impressions?.sort((a, b) => {
           return b.year - a.year;
-        })[0];
+        });
+        if (currentImpressions && currentImpressions.length > 0) {
+          // Sort weeks array inside each impression object
+          currentImpressions.forEach(impression => {
+            impression.weeks.sort((weekA, weekB) => weekA.number - weekB.number);
+          });
 
-        if (currentImpression) {
-          this.year$ = of(currentImpression.year);
-          this.weeks$ = of(currentImpression.weeks);
+          // Access the first impression after sorting
+          const currentImpression = currentImpressions[0];
+
+          console.log(currentImpression.weeks); // Sorted weeks array
+          if (currentImpression) {
+            this.year$ = of(currentImpression.year);
+            this.weeks = currentImpression.weeks;
+          }
         }
       }
     });
-
 
     this.breakpointObserver
       .observe([
