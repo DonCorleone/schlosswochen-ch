@@ -1,31 +1,26 @@
 <div class="mt-8 max-w-md">
-  <form
-    name="subscribe"
-    method="post"
-    action="/schlosswochen/success"
-    netlify
-  >
-  <input type="hidden" name="form-name" value="subscribe">
+  <form name="subscribe" method="post" action="/schlosswochen/success" netlify>
+    <input type="hidden" name="form-name" value="subscribe" />
     <div class="grid grid-cols-1 gap-6">
-      <label for="first_name" class="block"> 
+      <label for="first_name" class="block">
         <span class="text-bleu-ceruleen-pale text-base">Vorname</span>
         <input
-        type="text"
-        name="first_name"
-        id="first_name"
-        class="mt-1 block w-full"
-        required
-      />
+          type="text"
+          name="first_name"
+          id="first_name"
+          class="mt-1 block w-full"
+          required
+        />
       </label>
-      <label for="last_name" class="block"> 
+      <label for="last_name" class="block">
         <span class="text-bleu-ceruleen-pale text-base">Nachname</span>
         <input
-        type="text"
-        name="last_name"
-        id="last_name"
-        class="mt-1 block w-full"
-        required
-      />
+          type="text"
+          name="last_name"
+          id="last_name"
+          class="mt-1 block w-full"
+          required
+        />
       </label>
       <label for="email" class="block">
         <span class="text-bleu-ceruleen-pale text-base">e-Mail</span>
@@ -38,7 +33,14 @@
           required
         />
       </label>
-      <button mat-flat-button color="primary" class="bg-rouge-rubia text-bleu-ceruleen-pale" type="submit">Senden</button>
+      <button
+        mat-flat-button
+        color="primary"
+        class="bg-rouge-rubia text-bleu-ceruleen-pale"
+        type="submit"
+      >
+        Senden
+      </button>
     </div>
   </form>
 </div>
