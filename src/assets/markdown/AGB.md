@@ -1,7 +1,7 @@
-# AGB
-Die Allgemeinen Geschäftsbedingungen können hier heruntergeladen werden: [PDF](/assets/pdf/agb_schlosswochen.pdf)
+## AGB
+Die Allgemeinen Geschäftsbedingungen können hier heruntergeladen werden:[PDF](/assets/pdf/agb_schlosswochen.pdf)
 
-# Impressum
+## Impressum
 Verein Kinderkultur, Luzern 
 Richard-Wagner-Weg 17
 CH-6004 Luzern 
@@ -13,7 +13,7 @@ Schweiz
 Natalie Wieland
 
 
-## Datenschutz
+### Datenschutz
 
 Die Seite verwendet nur Cookies zum einwandfreien Betrieb der Website, dessen Daten nicht an Google und andere Datenhändler weitergegeben werden.
 
