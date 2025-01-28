@@ -8,13 +8,13 @@
     <mat-card-content *ngIf="year$ | async as year"
       class="bg-vert-59 text-terre-ombre-brule p-4"
     >
-      <h2 class="text-white">Daten {{ year$ | async }}</h2>
-      <app-weeks *ngIf="weeks"
+      <h3 class="text-white">Die Schlosswochen pausieren vorübergehend – wir danken für Ihr Verständnis.</h3>
+      <!--app-weeks-- *ngIf="weeks"
         [weeks]="weeks"
         [year]="year"
         [showSwiper]="false"
         [hideToggle]="true" >
-      </app-weeks>
+      </app-weeks-->
     </mat-card-content>
 
   </mat-card>
