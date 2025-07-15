@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../../environments/environment';
+import { ConfigService } from '../../../../config/config.service';
 
 @Component({
   selector: 'app-maps',
@@ -27,10 +27,15 @@ export class MapsComponent implements OnInit {
   markers: any[] = [];
   apiLoaded: Observable<boolean>;
 
-  constructor(httpClient: HttpClient) {
-    this.apiLoaded = httpClient
+  private httpClient = inject(HttpClient);
+  private configService = inject(ConfigService);
+
+  constructor() {
+    const config = this.configService.getConfig();
+    
+    this.apiLoaded = this.httpClient
       .jsonp(
-        `https://maps.googleapis.com/maps/api/js?key=${environment.API_KEY_GMAPS}`,
+        `https://maps.googleapis.com/maps/api/js?key=${config.googleMapsApiKey}`,
         'callback'
       )
       .pipe(

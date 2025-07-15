@@ -1,29 +1,29 @@
 import { Handler } from '@netlify/functions';
-const axios = require('axios');
+import { connectToDatabase } from './mongodb';
 
 const handler: Handler = async (event, context) => {
   console.log(JSON.stringify(event?.queryStringParameters));
 
+  try {
+    const { db } = await connectToDatabase();
 
-  const config = {
-    method: 'post',
-    url: 'https://data.mongodb-api.com/app/schlosswochen-ch-tfxqz/endpoint/content',
-    data: {},
-  };
+    // console.log('Connected to MongoDB ' + JSON.stringify(db.listCollections()));
+    const collection = db.collection('schlosswochen-content-index');
+    
+    // Fetch all content documents, sorted by sortorder
+    const content = await collection.find({ active: true }).sort({ sortorder: 1 }).toArray();
 
-  return axios(config)
-    .then(function (response: { data: any; }) {
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ message: response.data }),
-      };
-    })
-    .catch(function (error: any) {
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ message: error }),
-      };
-    });
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: content }),
+    };
+  } catch (error) {
+    console.error('MongoDB error:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Failed to fetch content from database' }),
+    };
+  }
 };
 
 export { handler };

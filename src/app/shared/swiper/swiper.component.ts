@@ -1,8 +1,8 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, inject} from '@angular/core';
 import {EMPTY, map, Observable, Subject, takeUntil} from 'rxjs';
 import {ImagesService, Netlifile} from '../../services/images.service';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {environment} from '../../../environments/environment';
+import {ConfigService} from '../../config/config.service';
 import {AutoplayOptions} from 'swiper/types';
 import {register} from 'swiper/element/bundle';
 import {SwiperDirective} from "../../schlosswochen/directives/swiper.directive";
@@ -32,12 +32,10 @@ export class SwiperComponent implements OnInit, OnDestroy {
   files$: Observable<Netlifile[]> = EMPTY;
 
   private _ngDestroy$ = new Subject<void>();
-
-  constructor(
-    private imageService: ImagesService,
-    private breakpointObserver: BreakpointObserver,
-  ) {
-  }
+  
+  private imageService = inject(ImagesService);
+  private breakpointObserver = inject(BreakpointObserver);
+  private configService = inject(ConfigService);
 
   ngOnInit(): void {
     this.config = {
@@ -75,9 +73,10 @@ export class SwiperComponent implements OnInit, OnDestroy {
               .listAssets(`/assets/images/${this.year}-${this.week}`)
               .pipe(
                 map((p) => {
+                  const config = this.configService.getConfig();
                   p.forEach(
                     (image) =>
-                      (image.path = `${environment.URL}${image.path}?nf_resize=fit&w=${this.width}`)
+                      (image.path = `${config.baseUrl}${image.path}?nf_resize=fit&w=${this.width}`)
                   );
                   return p;
                 })

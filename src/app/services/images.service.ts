@@ -1,31 +1,24 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, OnDestroy } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { ConfigService } from '../config/config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ImagesService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+  private configService = inject(ConfigService);
 
   listAssets(path: string): Observable<Netlifile[]> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${environment.API_KEY_NETLIFY}`,
-      }),
-    };
-
+    const config = this.configService.getConfig();
+    
     return this.http
-      .get<Netlifile[]>(
-        'https://api.netlify.com/api/v1' +
-          `/sites/${environment.SITE_ID}/files/`,
-        httpOptions
-      )
+      .get<Netlifile[]>(`${config.apiUrl}/get-assets?path=${encodeURIComponent(path)}`)
       .pipe(
-        map((p) => p.filter((f) => f.path.startsWith(path))),
-        // map((x) => this.shuffle(x))
+        map((response: Netlifile[]) => {
+          return response.filter((x) => x.type === 'file');
+        })
       );
   }
 
@@ -49,6 +42,7 @@ export class ImagesService {
     return array;
   }
 }
+
 export interface Netlifile {
   id: string;
   path: string;
@@ -57,6 +51,7 @@ export interface Netlifile {
   size: number;
   site_id: string;
   deploy_id: string;
+  type: string; // Added this property for type checking
 }
 
 /*  downloadAll(): void {

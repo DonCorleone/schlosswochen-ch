@@ -1,5 +1,5 @@
 [functions]
-external_node_modules = ["axios"]
+external_node_modules = ["axios", "mongodb"]
 
 [build]
   command = "npm run build --configuration=production && npm run prerender"

@@ -20,6 +20,7 @@ import { SwiperModule } from './shared/swiper/swiper.module';
 import { DateAdapter } from '@angular/material/core';
 import { CustomDateAdapter } from './schlosswochen/components/main-content/readonly-datepicker/custom-date-adapter';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { APP_CONFIG_PROVIDER } from './config/environment.factory';
 
 import { register } from 'swiper/element/bundle';
 
@@ -67,7 +68,8 @@ export function markedOptionsFactory(): MarkedOptions {
     HttpClientJsonpModule,
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    APP_CONFIG_PROVIDER,
   ],
   bootstrap: [AppComponent],
 })
