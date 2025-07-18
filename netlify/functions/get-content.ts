@@ -12,9 +12,9 @@ const handler: Handler = async (event, context) => {
   });
 
   try {
-    // Add timeout to the entire operation
+    // Add timeout to the entire operation - reduced to 10 seconds
     const timeoutPromise = new Promise((_, reject) => {
-      setTimeout(() => reject(new Error('Function timeout after 15 seconds')), 15000);
+      setTimeout(() => reject(new Error('Function timeout after 10 seconds')), 10000);
     });
 
     const operationPromise = async () => {

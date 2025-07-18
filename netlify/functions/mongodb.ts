@@ -15,49 +15,51 @@ export async function connectToDatabase() {
   console.log('Attempting MongoDB connection to database:', dbName);
   console.log('Connection string starts with:', uri.substring(0, 20) + '...');
 
-  // Test if cached connection is still alive
-  if (cachedClient && cachedDb) {
+  // Skip cache check for now to avoid potential issues
+  // Reset cache to force fresh connection
+  if (cachedClient) {
     try {
-      // Ping the database to check if connection is alive
-      await cachedDb.admin().ping();
-      console.log('Using cached MongoDB connection');
-      return { client: cachedClient, db: cachedDb };
-    } catch (error) {
-      console.warn('Cached connection is dead, creating new one:', error);
-      cachedClient = null;
-      cachedDb = null;
+      await cachedClient.close();
+    } catch (e) {
+      console.warn('Error closing cached client:', e);
     }
+    cachedClient = null;
+    cachedDb = null;
   }
 
-  // Create new connection with timeout settings
-  let client = new MongoClient(uri, {
-    serverSelectionTimeoutMS: 5000, // 5 second timeout
-    connectTimeoutMS: 10000,        // 10 second timeout
-    socketTimeoutMS: 10000,         // 10 second timeout
-    maxPoolSize: 10,
-    minPoolSize: 1,
-    // SSL/TLS configuration for Atlas
-    tls: true,
-    tlsAllowInvalidCertificates: false,
-    tlsAllowInvalidHostnames: false,
-    // Retry configuration
+  // Create new connection with minimal configuration
+  const client = new MongoClient(uri, {
+    serverSelectionTimeoutMS: 3000, // Reduced timeout
+    connectTimeoutMS: 5000,         // Reduced timeout
+    socketTimeoutMS: 5000,          // Reduced timeout
+    maxPoolSize: 1,                 // Minimal pool size
+    minPoolSize: 0,                 // No minimum
     retryWrites: true,
-    retryReads: true,
-    // Connection pool settings
-    maxIdleTimeMS: 30000,
-    maxConnecting: 2,
+    appName: 'netlify-functions',   // Help identify connections
   });
 
   try {
-    console.log('Creating new MongoDB client with full SSL config...');
-    await client.connect();
+    console.log('Creating new MongoDB client with minimal config...');
+    
+    // Set a shorter timeout for the connection attempt
+    const connectPromise = client.connect();
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error('Connection timeout after 8 seconds')), 8000);
+    });
+
+    await Promise.race([connectPromise, timeoutPromise]);
     console.log('MongoDB client connected successfully');
     
     const db = client.db(dbName);
     console.log('Database selected:', dbName);
 
-    // Test the connection
-    await db.admin().ping();
+    // Quick ping test
+    const pingPromise = db.admin().ping();
+    const pingTimeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error('Ping timeout after 3 seconds')), 3000);
+    });
+
+    await Promise.race([pingPromise, pingTimeoutPromise]);
     console.log('MongoDB ping successful');
 
     // Cache the connection for future use
@@ -66,44 +68,15 @@ export async function connectToDatabase() {
 
     return { client, db };
   } catch (error) {
-    console.error('Failed to connect with full SSL config:', error);
+    console.error('Failed to connect to MongoDB:', error);
     
-    // Clean up failed client
+    // Clean up on failure
     try {
       await client.close();
     } catch (closeError) {
       console.warn('Failed to close failed client:', closeError);
     }
-
-    // Try with minimal SSL configuration as fallback
-    console.log('Attempting fallback connection with minimal SSL...');
-    client = new MongoClient(uri, {
-      serverSelectionTimeoutMS: 10000,
-      connectTimeoutMS: 15000,
-      socketTimeoutMS: 15000,
-      maxPoolSize: 5,
-      minPoolSize: 1,
-      retryWrites: true,
-    });
-
-    try {
-      await client.connect();
-      const db = client.db(dbName);
-      await db.admin().ping();
-      
-      cachedClient = client;
-      cachedDb = db;
-      
-      console.log('Fallback connection successful');
-      return { client, db };
-    } catch (fallbackError) {
-      console.error('Fallback connection also failed:', fallbackError);
-      try {
-        await client.close();
-      } catch (closeError) {
-        console.warn('Failed to close fallback client:', closeError);
-      }
-      throw fallbackError;
-    }
+    
+    throw error;
   }
 }
