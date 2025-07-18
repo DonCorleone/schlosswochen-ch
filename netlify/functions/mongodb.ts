@@ -11,19 +11,43 @@ export async function connectToDatabase() {
     throw new Error('MONGODB_URI environment variable is not configured');
   }
 
-  // If we have a cached connection, use it
+  // Test if cached connection is still alive
   if (cachedClient && cachedDb) {
-    return { client: cachedClient, db: cachedDb };
+    try {
+      // Ping the database to check if connection is alive
+      await cachedDb.admin().ping();
+      return { client: cachedClient, db: cachedDb };
+    } catch (error) {
+      console.warn('Cached connection is dead, creating new one');
+      cachedClient = null;
+      cachedDb = null;
+    }
   }
 
-  // Create new connection
-  const client = new MongoClient(uri);
-  await client.connect();
-  const db = client.db(dbName);
+  // Create new connection with timeout settings
+  const client = new MongoClient(uri, {
+    serverSelectionTimeoutMS: 5000, // 5 second timeout
+    connectTimeoutMS: 10000,        // 10 second timeout
+    socketTimeoutMS: 10000,         // 10 second timeout
+    maxPoolSize: 10,
+    minPoolSize: 1,
+  });
 
-  // Cache the connection for future use
-  cachedClient = client;
-  cachedDb = db;
+  try {
+    await client.connect();
+    const db = client.db(dbName);
 
-  return { client, db };
+    // Test the connection
+    await db.admin().ping();
+
+    // Cache the connection for future use
+    cachedClient = client;
+    cachedDb = db;
+
+    return { client, db };
+  } catch (error) {
+    console.error('Failed to connect to MongoDB:', error);
+    await client.close();
+    throw error;
+  }
 }

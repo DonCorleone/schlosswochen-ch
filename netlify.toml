@@ -1,5 +1,6 @@
 [functions]
 external_node_modules = ["axios", "mongodb"]
+node_bundler = "esbuild"
 
 [build]
   command = "npm run build && npm run prerender"
