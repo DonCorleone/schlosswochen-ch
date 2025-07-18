@@ -14,11 +14,10 @@ export class ImagesService {
     const config = this.configService.getConfig();
     
     return this.http
-      .get<Netlifile[]>(`${config.apiUrl}/get-assets?path=${encodeURIComponent(path)}`)
+      .get<Netlifile[]>(`${config.apiUrl}/get-assets`)
       .pipe(
-        map((response: Netlifile[]) => {
-          return response.filter((x) => x.type === 'file');
-        })
+        map((p) => p.filter((f) => f.path.startsWith(path))),
+        // map((x) => this.shuffle(x))
       );
   }
 

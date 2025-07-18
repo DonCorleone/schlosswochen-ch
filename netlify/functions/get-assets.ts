@@ -1,7 +1,6 @@
 import { Handler } from '@netlify/functions';
 
 const handler: Handler = async (event, context) => {
-  const path = event.queryStringParameters?.['path'] || '';
   
   if (!process.env['API_KEY_NETLIFY'] || !process.env['SITE_ID']) {
     return {
@@ -12,7 +11,7 @@ const handler: Handler = async (event, context) => {
 
   try {
     const response = await fetch(
-      `https://api.netlify.com/api/v1/sites/${process.env['SITE_ID']}/files/${path}`,
+      `https://api.netlify.com/api/v1/sites/${process.env['SITE_ID']}/files`,
       {
         headers: {
           'Authorization': `Bearer ${process.env['API_KEY_NETLIFY']}`,
