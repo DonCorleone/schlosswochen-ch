@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  googleMapsApiKey: '', // Will be injected at runtime for security
 };
 
 /*

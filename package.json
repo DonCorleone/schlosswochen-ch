@@ -4,14 +4,16 @@
   "scripts": {
     "ng": "ng",
     "netlify": "NODE_OPTIONS=--inspect netlify functions:serve",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node scripts/inject-dev-env.js && ng serve",
+    "start:clean": "ng serve",
+    "build": "node scripts/clean-dev-env.js && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev:ssr": "ng run schlosswochen-ch:serve-ssr",
     "serve:ssr": "node dist/schlosswochen-ch/server/main.js",
-    "build:ssr": "ng build && ng run schlosswochen-ch:server",
-    "prerender": "ng run schlosswochen-ch:prerender"
+    "build:ssr": "node scripts/clean-dev-env.js && ng build && ng run schlosswochen-ch:server",
+    "prerender": "node scripts/clean-dev-env.js && ng run schlosswochen-ch:prerender",
+    "clean:env": "node scripts/clean-dev-env.js"
   },
   "private": true,
   "dependencies": {
