@@ -42,7 +42,7 @@ export class MapsComponent implements OnInit {
     
     this.apiLoaded = this.httpClient
       .jsonp(
-        `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=marker`,
+        `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=marker&loading=async`,
         'callback'
       )
       .pipe(
