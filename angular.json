@@ -23,9 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": {
-              "base": "dist/schlosswochen-ch"
-            },
+            "outputPath": "dist/schlosswochen-ch",
             "index": "src/index.html",
             "polyfills": [
               "src/polyfills.ts"
@@ -47,7 +45,7 @@
             ],
             "browser": "src/main.ts",
             "server": "src/main.server.ts",
-            "prerender": true,
+            "prerender": false,
             "ssr": true
           },
           "configurations": {
@@ -77,7 +75,7 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true,
-              "prerender": true,
+              "prerender": false,
               "ssr": true
             }
           },
