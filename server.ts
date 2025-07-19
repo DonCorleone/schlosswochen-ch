@@ -6,6 +6,7 @@ import express from 'express';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import AppServerModule from './src/main.server';
+import { injectEnvironmentVariables } from './src/app/config/ssr-env-injection';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -39,7 +40,11 @@ export function app(): express.Express {
         publicPath: distFolder,
         providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
       })
-      .then((html) => res.send(html))
+      .then((html) => {
+        // Inject safe environment variables into the HTML
+        const htmlWithEnv = injectEnvironmentVariables(html);
+        res.send(htmlWithEnv);
+      })
       .catch((err) => next(err));
   });
 

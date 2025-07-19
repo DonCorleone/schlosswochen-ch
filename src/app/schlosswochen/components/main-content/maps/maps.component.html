@@ -1,4 +1,4 @@
-<div *ngIf="apiLoaded | async">
+<div *ngIf="showMap; else loading">
   <google-map
     height="500px"
     width="100%"
@@ -9,7 +9,6 @@
     <map-marker
       *ngFor="let marker of markers"
       [position]="marker.position"
-      [label]="marker.label"
       [title]="marker.title"
       [options]="marker.options"
     >
@@ -20,3 +19,9 @@
     <button mat-flat-button color="accent" (click)="zoomOut()">Zoom out</button>
   </div>
 </div>
+
+<ng-template #loading>
+  <div class="flex items-center justify-center h-96">
+    <p>Loading map...</p>
+  </div>
+</ng-template>

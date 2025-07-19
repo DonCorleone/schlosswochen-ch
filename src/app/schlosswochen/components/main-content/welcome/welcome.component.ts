@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {Card, Content, Week} from '../../../../models/content';
 import { ContentService } from '../../../../services/content.service';
 import { EMPTY, map, Observable, of, Subject, takeUntil } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { environment } from '../../../../../environments/environment';
+import { ConfigService } from '../../../../config/config.service';
 
 @Component({
   selector: 'app-welcome',
@@ -11,11 +11,11 @@ import { environment } from '../../../../../environments/environment';
 })
 export class WelcomeComponent implements OnInit, OnDestroy {
   cards$: Observable<Card[] | undefined> = EMPTY;
-
-  constructor(
-    private contentService: ContentService,
-    private breakpointObserver: BreakpointObserver
-  ) {}
+  
+  private contentService = inject(ContentService);
+  private breakpointObserver = inject(BreakpointObserver);
+  private configService = inject(ConfigService);
+  
   private _ngDestroy$ = new Subject<void>();
   weeks: Week[] = [];
   year$: Observable<number | undefined> = EMPTY;
@@ -72,10 +72,11 @@ export class WelcomeComponent implements OnInit, OnDestroy {
                 )?.cards;
                 const cardsnew: Card[] = [];
                 if (cardsDef) {
+                  const config = this.configService.getConfig();
                   cardsDef.forEach((s) => {
                     cardsnew.push({
                       ...s,
-                      imageUrl: `${environment.URL}${s.imageUrl}?nf_resize=fit&w=${width}`,
+                      imageUrl: `${config.baseUrl}${s.imageUrl}?nf_resize=fit&w=${width}`,
                     });
                   });
                 }
