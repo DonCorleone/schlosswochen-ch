@@ -1,27 +1,34 @@
 import { APP_CONFIG, AppConfig } from '../config/app.config';
 import { RuntimeConfigService } from '../services/runtime-config.service';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
-export function createAppConfig(runtimeConfigService?: RuntimeConfigService): AppConfig {
+export function createAppConfig(runtimeConfigService?: RuntimeConfigService, platformId?: Object): AppConfig {
   // Safe way to access environment variables in the browser
-  const isProduction = typeof window !== 'undefined' 
-    ? window.location.hostname !== 'localhost'
+  const isProduction = isPlatformBrowser(platformId || '') 
+    ? (typeof window !== 'undefined' && window.location.hostname !== 'localhost')
     : false;
 
-  const baseUrl = typeof window !== 'undefined'
+  const baseUrl = isPlatformBrowser(platformId || '') && typeof window !== 'undefined'
     ? window.location.origin
     : '';
 
   return {
     production: isProduction,
     apiUrl: '/.netlify/functions',
-    googleMapsApiKey: getGoogleMapsApiKey(runtimeConfigService),
+    googleMapsApiKey: getGoogleMapsApiKey(runtimeConfigService, platformId),
     appName: 'Schlosswochen',
     version: '1.0.0',
     baseUrl: baseUrl,
   };
 }
 
-function getGoogleMapsApiKey(runtimeConfigService?: RuntimeConfigService): string {
+function getGoogleMapsApiKey(runtimeConfigService?: RuntimeConfigService, platformId?: Object): string {
+  // Only try to get API key in browser environment
+  if (!isPlatformBrowser(platformId || '')) {
+    return ''; // Return empty string during SSR
+  }
+
   // Try to get from runtime config service first
   if (runtimeConfigService) {
     const apiKey = runtimeConfigService.getGoogleMapsApiKey();
@@ -41,5 +48,5 @@ function getGoogleMapsApiKey(runtimeConfigService?: RuntimeConfigService): strin
 export const APP_CONFIG_PROVIDER = {
   provide: APP_CONFIG,
   useFactory: createAppConfig,
-  deps: [RuntimeConfigService]
+  deps: [RuntimeConfigService, PLATFORM_ID]
 };

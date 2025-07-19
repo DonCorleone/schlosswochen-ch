@@ -1,8 +1,9 @@
-import {Component, Input, OnDestroy, OnInit, inject} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, inject, PLATFORM_ID} from '@angular/core';
 import {EMPTY, map, Observable, Subject, takeUntil} from 'rxjs';
 import {ImagesService, Netlifile} from '../../services/images.service';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {ConfigService} from '../../config/config.service';
+import { isPlatformBrowser } from '@angular/common';
 import {AutoplayOptions} from 'swiper/types';
 import {register} from 'swiper/element/bundle';
 import {SwiperDirective} from "../../schlosswochen/directives/swiper.directive";
@@ -14,7 +15,14 @@ import {SwiperOptions} from "swiper/types";
   templateUrl: './swiper.component.html',
 })
 export class SwiperComponent implements OnInit, OnDestroy {
+  private platformId = inject(PLATFORM_ID);
+
   letsgo(filePath: string) {
+    // Only open windows in browser environment
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    
     // remove the trailing ?nf_resize=fit&w=* from the path
     filePath = filePath.replace(/\?nf_resize=fit&w=\d+$/, '');
     // open a new tab with the image

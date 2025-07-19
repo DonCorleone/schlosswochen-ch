@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { ConfigService } from '../config/config.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,7 @@ import { ConfigService } from '../config/config.service';
 export class ImagesService {
   private http = inject(HttpClient);
   private configService = inject(ConfigService);
+  private platformId = inject(PLATFORM_ID);
 
   listAssets(path: string): Observable<Netlifile[]> {
     const config = this.configService.getConfig();
@@ -75,6 +77,12 @@ export interface Netlifile {
   }
 
   createFile(res: Blob, title: string){
+    // Only create files in browser environment
+    if (!isPlatformBrowser(this.platformId)) {
+      console.log('File download skipped during SSR');
+      return;
+    }
+
     const a = document.createElement('a');
     a.href = URL.createObjectURL(res);
     a.download = title;
