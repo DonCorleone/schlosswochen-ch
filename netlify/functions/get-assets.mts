@@ -1,12 +1,13 @@
-import { Handler } from '@netlify/functions';
-
-const handler: Handler = async (event, context) => {
+export default async (request: Request) => {
   
   if (!process.env['API_KEY_NETLIFY'] || !process.env['SITE_ID']) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Netlify API configuration missing' }),
-    };
+    return new Response(
+      JSON.stringify({ error: 'Netlify API configuration missing' }),
+      { 
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
   }
 
   try {
@@ -26,17 +27,21 @@ const handler: Handler = async (event, context) => {
 
     const data = await response.json();
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify(data),
-    };
+    return new Response(
+      JSON.stringify(data),
+      { 
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
   } catch (error) {
     console.error('Error fetching assets:', error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to fetch assets' }),
-    };
+    return new Response(
+      JSON.stringify({ error: 'Failed to fetch assets' }),
+      { 
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
   }
 };
-
-export { handler };
