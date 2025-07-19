@@ -1,6 +1,4 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { RuntimeConfigService } from '../../../../services/runtime-config.service';
 
 @Component({
@@ -9,12 +7,10 @@ import { RuntimeConfigService } from '../../../../services/runtime-config.servic
 })
 export class MapsComponent implements OnInit {
   zoom = 15;
-  center: google.maps.LatLngLiteral = new (class
-    implements google.maps.LatLngLiteral
-  {
-    lat = 47.0417285;
-    lng = 8.3260751;
-  })();
+  center: google.maps.LatLngLiteral = {
+    lat: 47.0417285,
+    lng: 8.3260751
+  };
   options: google.maps.MapOptions = {
     mapTypeId: 'hybrid',
     zoomControl: false,
@@ -22,51 +18,57 @@ export class MapsComponent implements OnInit {
     disableDoubleClickZoom: true,
     maxZoom: 20,
     minZoom: 8,
-    mapId: '262b6f139ce6cbee8c164b15', // Required for Advanced Markers
   };
 
-  markers: any[] = [];
-  apiLoaded: Observable<boolean>;
+  markers = [{
+    position: {
+      lat: 47.0417285,
+      lng: 8.3260751,
+    },
+    title: 'Pavillon Tribschenhorn - Schlosswochen Luzern',
+    options: {
+      draggable: false,
+    },
+  }];
 
-  private httpClient = inject(HttpClient);
+  showMap = false;
   private runtimeConfigService = inject(RuntimeConfigService);
 
-  constructor() {
-    const apiKey = this.runtimeConfigService.getGoogleMapsApiKey();
-    
-    if (!apiKey) {
-      console.warn('Google Maps API key not available, maps component will not load');
-      this.apiLoaded = of(false);
+  ngOnInit(): void {
+    // Load Google Maps API script manually to avoid library version conflicts
+    this.loadGoogleMapsScript();
+  }
+
+  private loadGoogleMapsScript(): void {
+    // Check if Google Maps is already loaded
+    if (typeof google !== 'undefined' && google.maps) {
+      this.showMap = true;
       return;
     }
+
+    const apiKey = this.runtimeConfigService.getGoogleMapsApiKey();
+    if (!apiKey) {
+      console.warn('Google Maps API key not available');
+      return;
+    }
+
+    // Load the script in a way that's compatible with Angular Google Maps
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&loading=async&callback=initGoogleMaps`;
     
-    this.apiLoaded = this.httpClient
-      .jsonp(
-        `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=marker&loading=async`,
-        'callback'
-      )
-      .pipe(
-        map(() => {
-          this.markers.push({
-            position: {
-              lat: 47.0417285,
-              lng: 8.3260751,
-            },
-            title: 'Pavillon Tribschenhorn - Schlosswochen Luzern',
-            options: {
-              // Advanced marker options
-              gmpDraggable: false,
-            },
-          });
-          return true;
-        }),
-        catchError((error) => {
-          console.error('Failed to load Google Maps API:', error);
-          return of(false);
-        })
-      );
+    // Create global callback
+    (window as any).initGoogleMaps = () => {
+      this.showMap = true;
+      delete (window as any).initGoogleMaps;
+    };
+
+    script.onerror = (error) => {
+      console.error('Failed to load Google Maps API:', error);
+    };
+
+    document.head.appendChild(script);
   }
-  ngOnInit(): void {}
+
   zoomIn() {
     if (!this.options || !this.options.maxZoom) {
       return;
