@@ -1,6 +1,5 @@
 import { Handler } from '@netlify/functions';
-import { Mailbody } from 'netlify/models/mailbody';
-import fetch from 'node-fetch';
+import { Mailbody } from '../models/mailbody.js';
 
 const handler: Handler = async function (event) {
 
