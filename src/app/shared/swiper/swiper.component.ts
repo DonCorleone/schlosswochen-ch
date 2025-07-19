@@ -4,7 +4,6 @@ import {ImagesService, Netlifile} from '../../services/images.service';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {ConfigService} from '../../config/config.service';
 import {AutoplayOptions} from 'swiper/types';
-import {register} from 'swiper/element/bundle';
 import {SwiperDirective} from "../../schlosswochen/directives/swiper.directive";
 import {SwiperContainer} from "swiper/element";
 import {SwiperOptions} from "swiper/types";

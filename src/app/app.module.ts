@@ -20,8 +20,6 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { APP_CONFIG_PROVIDER } from './config/environment.factory';
 import { RuntimeConfigService } from './services/runtime-config.service';
 
-import { register } from 'swiper/element/bundle';
-
 const routes: Routes = [
   {
     path: 'schlosswochen',
