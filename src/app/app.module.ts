@@ -2,6 +2,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   NgModule,
   SecurityContext,
+  APP_INITIALIZER,
 } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
@@ -21,6 +22,7 @@ import { DateAdapter } from '@angular/material/core';
 import { CustomDateAdapter } from './schlosswochen/components/main-content/readonly-datepicker/custom-date-adapter';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { APP_CONFIG_PROVIDER } from './config/environment.factory';
+import { RuntimeConfigService } from './services/runtime-config.service';
 
 import { register } from 'swiper/element/bundle';
 
@@ -51,6 +53,13 @@ export function markedOptionsFactory(): MarkedOptions {
   };
 }
 
+// App initializer to load configuration at startup
+export function initializeApp(runtimeConfigService: RuntimeConfigService) {
+  return (): Promise<any> => {
+    return runtimeConfigService.loadConfig().toPromise();
+  };
+}
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -70,6 +79,12 @@ export function markedOptionsFactory(): MarkedOptions {
   providers: [
     provideClientHydration(),
     APP_CONFIG_PROVIDER,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [RuntimeConfigService],
+      multi: true
+    },
   ],
   bootstrap: [AppComponent],
 })

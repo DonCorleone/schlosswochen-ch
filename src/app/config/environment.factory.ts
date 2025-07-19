@@ -1,6 +1,7 @@
 import { APP_CONFIG, AppConfig } from '../config/app.config';
+import { RuntimeConfigService } from '../services/runtime-config.service';
 
-export function createAppConfig(): AppConfig {
+export function createAppConfig(runtimeConfigService?: RuntimeConfigService): AppConfig {
   // Safe way to access environment variables in the browser
   const isProduction = typeof window !== 'undefined' 
     ? window.location.hostname !== 'localhost'
@@ -13,22 +14,32 @@ export function createAppConfig(): AppConfig {
   return {
     production: isProduction,
     apiUrl: '/.netlify/functions',
-    googleMapsApiKey: getGoogleMapsApiKey(),
+    googleMapsApiKey: getGoogleMapsApiKey(runtimeConfigService),
     appName: 'Schlosswochen',
     version: '1.0.0',
     baseUrl: baseUrl,
   };
 }
 
-function getGoogleMapsApiKey(): string {
-  // This will be injected by the server during SSR (production) or by the script in index.html (development)
+function getGoogleMapsApiKey(runtimeConfigService?: RuntimeConfigService): string {
+  // Try to get from runtime config service first
+  if (runtimeConfigService) {
+    const apiKey = runtimeConfigService.getGoogleMapsApiKey();
+    if (apiKey) {
+      return apiKey;
+    }
+  }
+
+  // Fallback to window injection (for development or legacy support)
   if (typeof window !== 'undefined' && (window as any).__GOOGLE_MAPS_API_KEY__) {
     return (window as any).__GOOGLE_MAPS_API_KEY__;
   }
-  return ''; // Fallback
+  
+  return ''; // Final fallback
 }
 
 export const APP_CONFIG_PROVIDER = {
   provide: APP_CONFIG,
   useFactory: createAppConfig,
+  deps: [RuntimeConfigService]
 };

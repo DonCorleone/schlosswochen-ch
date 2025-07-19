@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../../../../config/config.service';
+import { RuntimeConfigService } from '../../../../services/runtime-config.service';
 
 @Component({
   selector: 'app-maps',
@@ -28,14 +28,20 @@ export class MapsComponent implements OnInit {
   apiLoaded: Observable<boolean>;
 
   private httpClient = inject(HttpClient);
-  private configService = inject(ConfigService);
+  private runtimeConfigService = inject(RuntimeConfigService);
 
   constructor() {
-    const config = this.configService.getConfig();
+    const apiKey = this.runtimeConfigService.getGoogleMapsApiKey();
+    
+    if (!apiKey) {
+      console.warn('Google Maps API key not available, maps component will not load');
+      this.apiLoaded = of(false);
+      return;
+    }
     
     this.apiLoaded = this.httpClient
       .jsonp(
-        `https://maps.googleapis.com/maps/api/js?key=${config.googleMapsApiKey}`,
+        `https://maps.googleapis.com/maps/api/js?key=${apiKey}`,
         'callback'
       )
       .pipe(
@@ -50,7 +56,10 @@ export class MapsComponent implements OnInit {
           });
           return true;
         }),
-        catchError(() => of(false))
+        catchError((error) => {
+          console.error('Failed to load Google Maps API:', error);
+          return of(false);
+        })
       );
   }
   ngOnInit(): void {}
