@@ -3,8 +3,11 @@ import {
   NgModule,
   SecurityContext,
   APP_INITIALIZER,
+  PLATFORM_ID,
+  Inject,
 } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { isPlatformServer } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,7 +15,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
 import { MARKED_OPTIONS, MarkedOptions, MarkedRenderer } from 'ngx-markdown';
 
-import { HttpClient, provideHttpClient, withInterceptorsFromDi, withJsonpSupport } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi, withJsonpSupport, withFetch } from '@angular/common/http';
 import { SwiperModule } from './shared/swiper/swiper.module';
 import { DateAdapter } from '@angular/material/core';
 import { CustomDateAdapter } from './schlosswochen/components/main-content/readonly-datepicker/custom-date-adapter';
@@ -50,8 +53,14 @@ export function markedOptionsFactory(): MarkedOptions {
 }
 
 // App initializer to load configuration at startup
-export function initializeApp(runtimeConfigService: RuntimeConfigService) {
+export function initializeApp(runtimeConfigService: RuntimeConfigService, platformId: Object) {
   return (): Promise<any> => {
+    // Skip external HTTP calls during prerendering/SSR
+    if (isPlatformServer(platformId)) {
+      console.log('Skipping external HTTP calls during prerendering/SSR');
+      return Promise.resolve();
+    }
+    
     return runtimeConfigService.loadConfig().toPromise();
   };
 }
@@ -72,9 +81,9 @@ export function initializeApp(runtimeConfigService: RuntimeConfigService) {
         {
             provide: APP_INITIALIZER,
             useFactory: initializeApp,
-            deps: [RuntimeConfigService],
+            deps: [RuntimeConfigService, PLATFORM_ID],
             multi: true
         },
-        provideHttpClient(withInterceptorsFromDi(), withJsonpSupport()),
+        provideHttpClient(withInterceptorsFromDi(), withJsonpSupport(), withFetch()),
     ] })
 export class AppModule {}

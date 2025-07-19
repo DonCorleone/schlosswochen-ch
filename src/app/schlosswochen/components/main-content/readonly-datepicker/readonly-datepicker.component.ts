@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MatDatepickerInputEvent} from "@angular/material/datepicker";
+import {DateRange, ExtractDateTypeFromSelection, MatDatepickerInputEvent} from "@angular/material/datepicker";
 import {Week} from "../../../../models/content";
 
 @Component({
@@ -16,8 +16,8 @@ export class ReadonlyDatepickerComponent implements OnInit{
     this.initStart = this.week?.dateStart;
     this.initEnd = this.week?.dateEnd;
   }
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
 
+  addEvent(input: string, $event: MatDatepickerInputEvent<ExtractDateTypeFromSelection<DateRange<any>>, DateRange<any>>) {
     if (this.week){
       this.week.dateStart = this.initStart ?? new Date();
       this.week.dateEnd = this.initEnd ?? new Date();
