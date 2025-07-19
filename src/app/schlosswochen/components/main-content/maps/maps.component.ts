@@ -22,6 +22,7 @@ export class MapsComponent implements OnInit {
     disableDoubleClickZoom: true,
     maxZoom: 20,
     minZoom: 8,
+    mapId: '262b6f139ce6cbee8c164b15', // Required for Advanced Markers
   };
 
   markers: any[] = [];
@@ -41,7 +42,7 @@ export class MapsComponent implements OnInit {
     
     this.apiLoaded = this.httpClient
       .jsonp(
-        `https://maps.googleapis.com/maps/api/js?key=${apiKey}`,
+        `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=marker`,
         'callback'
       )
       .pipe(
@@ -53,8 +54,8 @@ export class MapsComponent implements OnInit {
             },
             title: 'Pavillon Tribschenhorn - Schlosswochen Luzern',
             options: {
-              // Standard marker options (no animation to avoid deprecation warnings)
-              draggable: false,
+              // Advanced marker options
+              gmpDraggable: false,
             },
           });
           return true;
