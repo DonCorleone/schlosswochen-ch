@@ -16,7 +16,7 @@ export class ReadonlyDatepickerComponent implements OnInit{
     this.initStart = this.week?.dateStart;
     this.initEnd = this.week?.dateEnd;
   }
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+  addEvent(type: string) {
 
     if (this.week){
       this.week.dateStart = this.initStart ?? new Date();
