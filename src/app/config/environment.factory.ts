@@ -1,9 +1,21 @@
 import { APP_CONFIG, AppConfig } from '../config/app.config';
 import { RuntimeConfigService } from '../services/runtime-config.service';
-import { PLATFORM_ID } from '@angular/core';
+import { PLATFORM_ID, Optional } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 export function createAppConfig(runtimeConfigService?: RuntimeConfigService, platformId?: Object): AppConfig {
+  // For SSR, return minimal config immediately
+  if (platformId && !isPlatformBrowser(platformId)) {
+    return {
+      production: false,
+      apiUrl: '/.netlify/functions',
+      googleMapsApiKey: '',
+      appName: 'Schlosswochen',
+      version: '1.0.0',
+      baseUrl: '',
+    };
+  }
+
   // Safe way to access environment variables in the browser
   const isProduction = isPlatformBrowser(platformId || '') 
     ? (typeof window !== 'undefined' && window.location.hostname !== 'localhost')
@@ -48,5 +60,5 @@ function getGoogleMapsApiKey(runtimeConfigService?: RuntimeConfigService, platfo
 export const APP_CONFIG_PROVIDER = {
   provide: APP_CONFIG,
   useFactory: createAppConfig,
-  deps: [RuntimeConfigService, PLATFORM_ID]
+  deps: [[new Optional(), RuntimeConfigService], PLATFORM_ID]
 };

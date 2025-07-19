@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild, inject, PLATFORM_ID } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { EMPTY, Observable, Subject, takeUntil } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ContentService } from '../../../services/content.service';
 import { Content } from '../../../models/content';
 import { Router, RouterLink } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 const SMALL_WIDTH_BREAKPOINT = 768;
 
@@ -16,6 +17,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
   isScreenSmall: boolean = false;
   private _ngDestroy$ = new Subject<void>();
   content$: Observable<Content[]> = EMPTY;
+  private platformId = inject(PLATFORM_ID);
 
   @ViewChild(MatSidenav) sideNav: MatSidenav | undefined;
 
@@ -34,7 +36,11 @@ export class SidenavComponent implements OnInit, OnDestroy {
       });
 
     this.content$ = this.contentService.content;
-    this.contentService.loadAll();
+    
+    // Only load content in browser environment
+    if (isPlatformBrowser(this.platformId)) {
+      this.contentService.loadAll();
+    }
 
     // this.content$.subscribe((data) => console.log(data));
 

@@ -5,6 +5,7 @@ import {
   APP_INITIALIZER,
   PLATFORM_ID,
   Inject,
+  Optional,
 } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { isPlatformServer } from '@angular/common';
@@ -53,7 +54,7 @@ export function markedOptionsFactory(): MarkedOptions {
 }
 
 // App initializer to load configuration at startup
-export function initializeApp(runtimeConfigService: RuntimeConfigService, platformId: Object) {
+export function initializeApp(runtimeConfigService: RuntimeConfigService | null, platformId: Object) {
   return (): Promise<any> => {
     // Complete bypass during SSR - don't even call the service
     if (isPlatformServer(platformId)) {
@@ -61,9 +62,14 @@ export function initializeApp(runtimeConfigService: RuntimeConfigService, platfo
       return Promise.resolve();
     }
     
-    // Only load config in browser
-    console.log('Browser detected: Loading runtime configuration');
-    return runtimeConfigService.loadConfig().toPromise();
+    // Only load config in browser if service is available
+    if (runtimeConfigService) {
+      console.log('Browser detected: Loading runtime configuration');
+      return runtimeConfigService.loadConfig().toPromise();
+    }
+    
+    console.log('No RuntimeConfigService available, skipping config load');
+    return Promise.resolve();
   };
 }
 
@@ -83,7 +89,7 @@ export function initializeApp(runtimeConfigService: RuntimeConfigService, platfo
         {
             provide: APP_INITIALIZER,
             useFactory: initializeApp,
-            deps: [RuntimeConfigService, PLATFORM_ID],
+            deps: [[new Optional(), RuntimeConfigService], PLATFORM_ID],
             multi: true
         },
         provideHttpClient(withInterceptorsFromDi(), withJsonpSupport(), withFetch()),
