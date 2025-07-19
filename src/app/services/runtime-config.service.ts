@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { map, catchError, shareReplay } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface AppConfig {
   googleMapsApiKey: string;
@@ -16,7 +17,10 @@ export class RuntimeConfigService {
   private configSubject = new BehaviorSubject<AppConfig | null>(null);
   private configCache$: Observable<AppConfig> | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   /**
    * Load configuration from Netlify function
@@ -24,6 +28,19 @@ export class RuntimeConfigService {
    */
   loadConfig(): Observable<AppConfig> {
     if (this.configCache$) {
+      return this.configCache$;
+    }
+
+    // During SSR/prerendering, return fallback config immediately
+    if (!isPlatformBrowser(this.platformId)) {
+      console.log('SSR detected - using fallback configuration');
+      const fallbackConfig: AppConfig = {
+        googleMapsApiKey: '',
+        environment: 'production',
+        version: '1.0.0'
+      };
+      this.configSubject.next(fallbackConfig);
+      this.configCache$ = of(fallbackConfig).pipe(shareReplay(1));
       return this.configCache$;
     }
 
