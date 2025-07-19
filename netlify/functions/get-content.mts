@@ -1,5 +1,5 @@
 import { Handler } from '@netlify/functions';
-import { connectToDatabase } from './mongodb';
+import { connectToDatabase } from './mongodb.mjs';
 
 const handler: Handler = async (event, context) => {
   console.log('get-content function called with params:', JSON.stringify(event?.queryStringParameters));

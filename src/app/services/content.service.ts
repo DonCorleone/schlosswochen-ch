@@ -1,8 +1,9 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, catchError, map, Observable, take } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, take, of } from 'rxjs';
 import { Content } from '../models/content';
 import { ConfigService } from '../config/config.service';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface GetContentResponse {
   message: Content[];
@@ -13,6 +14,7 @@ export class ContentService {
   private _content: BehaviorSubject<Content[]>;
   private http = inject(HttpClient);
   private configService = inject(ConfigService);
+  private platformId = inject(PLATFORM_ID);
 
   private dataStore: {
     content: Content[];
@@ -32,6 +34,12 @@ export class ContentService {
   }
 
   loadAll() {
+    // Skip HTTP calls during SSR/prerendering
+    if (!isPlatformBrowser(this.platformId)) {
+      console.log('SSR detected - skipping content loading');
+      return;
+    }
+
     const config = this.configService.getConfig();
     
     this.http
@@ -44,7 +52,8 @@ export class ContentService {
         }),
         catchError((err) => {
           console.error('Error loading content:', err);
-          throw 'error in source. Details: ' + err;
+          // Return empty content instead of throwing during SSR
+          return of([]);
         })
       )
       .subscribe();
