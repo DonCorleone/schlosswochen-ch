@@ -12,11 +12,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
 import { MARKED_OPTIONS, MarkedOptions, MarkedRenderer } from 'ngx-markdown';
 
-import {
-  HttpClient,
-  HttpClientJsonpModule,
-  HttpClientModule,
-} from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi, withJsonpSupport } from '@angular/common/http';
 import { SwiperModule } from './shared/swiper/swiper.module';
 import { DateAdapter } from '@angular/material/core';
 import { CustomDateAdapter } from './schlosswochen/components/main-content/readonly-datepicker/custom-date-adapter';
@@ -60,32 +56,25 @@ export function initializeApp(runtimeConfigService: RuntimeConfigService) {
   };
 }
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot(routes),
-    HttpClientModule,
-    MarkdownModule.forRoot({
-      loader: HttpClient,
-      markedOptions: {
-        provide: MARKED_OPTIONS,
-        useFactory: markedOptionsFactory,
-      },
-    }),
-    HttpClientJsonpModule,
-  ],
-  providers: [
-    provideClientHydration(),
-    APP_CONFIG_PROVIDER,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeApp,
-      deps: [RuntimeConfigService],
-      multi: true
-    },
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [AppComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule.forRoot(routes),
+        MarkdownModule.forRoot({
+            loader: HttpClient,
+            markedOptions: {
+                provide: MARKED_OPTIONS,
+                useFactory: markedOptionsFactory,
+            },
+        })], providers: [
+        provideClientHydration(),
+        APP_CONFIG_PROVIDER,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeApp,
+            deps: [RuntimeConfigService],
+            multi: true
+        },
+        provideHttpClient(withInterceptorsFromDi(), withJsonpSupport()),
+    ] })
 export class AppModule {}
