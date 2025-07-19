@@ -21,11 +21,11 @@ export function createAppConfig(): AppConfig {
 }
 
 function getGoogleMapsApiKey(): string {
-  // This will be injected by the server during SSR
+  // This will be injected by the server during SSR (production) or by the script in index.html (development)
   if (typeof window !== 'undefined' && (window as any).__GOOGLE_MAPS_API_KEY__) {
     return (window as any).__GOOGLE_MAPS_API_KEY__;
   }
-  return ''; // Fallback for development
+  return ''; // Fallback
 }
 
 export const APP_CONFIG_PROVIDER = {
