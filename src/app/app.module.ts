@@ -55,12 +55,14 @@ export function markedOptionsFactory(): MarkedOptions {
 // App initializer to load configuration at startup
 export function initializeApp(runtimeConfigService: RuntimeConfigService, platformId: Object) {
   return (): Promise<any> => {
-    // Skip external HTTP calls during prerendering/SSR
+    // Complete bypass during SSR - don't even call the service
     if (isPlatformServer(platformId)) {
-      console.log('Skipping external HTTP calls during prerendering/SSR');
+      console.log('SSR detected: Skipping app initialization completely');
       return Promise.resolve();
     }
     
+    // Only load config in browser
+    console.log('Browser detected: Loading runtime configuration');
     return runtimeConfigService.loadConfig().toPromise();
   };
 }

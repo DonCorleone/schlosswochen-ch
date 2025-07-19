@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { RuntimeConfigService } from '../../../../services/runtime-config.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-maps',
@@ -33,13 +34,21 @@ export class MapsComponent implements OnInit {
 
   showMap = false;
   private runtimeConfigService = inject(RuntimeConfigService);
+  private platformId = inject(PLATFORM_ID);
 
   ngOnInit(): void {
-    // Load Google Maps API script manually to avoid library version conflicts
-    this.loadGoogleMapsScript();
+    // Only initialize maps in browser
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadGoogleMapsScript();
+    }
   }
 
   private loadGoogleMapsScript(): void {
+    // Additional safety check - should only run in browser
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     // Check if Google Maps is already loaded
     if (typeof google !== 'undefined' && google.maps) {
       this.showMap = true;
