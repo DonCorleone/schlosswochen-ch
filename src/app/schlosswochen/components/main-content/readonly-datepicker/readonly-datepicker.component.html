@@ -1,8 +1,8 @@
 <mat-form-field appearance="fill" class="flex flex-row">
   <mat-label>Woche {{week?.number}}</mat-label>
   <mat-date-range-input [rangePicker]="picker">
-    <input matStartDate placeholder="Start date" [value]="week?.dateStart" readonly (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)"  >
-    <input matEndDate placeholder="End date" [value]="week?.dateEnd" readonly (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" >
+    <input matStartDate placeholder="Start date" [value]="week?.dateStart" readonly (dateInput)="addEvent('input')" (dateChange)="addEvent('change')"  >
+    <input matEndDate placeholder="End date" [value]="week?.dateEnd" readonly (dateInput)="addEvent('input')" (dateChange)="addEvent('change')" >
   </mat-date-range-input>
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-date-range-picker #picker st></mat-date-range-picker>
